@@ -3,6 +3,7 @@ package models;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -15,19 +16,18 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 /**
  * 従業員データのDTOモデル
  *
  */
 @Table(name = JpaConst.TABLE_EMP)
 @NamedQueries({
-	@NamedQuery(
-			name = JpaConst.Q_EMP_GET_ALL,
-			query = JpaConst.Q_EMP_GET_ALL_DEF),
-	@NamedQuery(
-			name = JpaConst.Q_EMP_COUNT,
-			query = JpaConst.Q_EMP_COUNT_DEF),
+    @NamedQuery(
+            name = JpaConst.Q_EMP_GET_ALL,
+            query = JpaConst.Q_EMP_GET_ALL_DEF),
+    @NamedQuery(
+            name = JpaConst.Q_EMP_COUNT,
+            query = JpaConst.Q_EMP_COUNT_DEF),
     @NamedQuery(
             name = JpaConst.Q_EMP_COUNT_REGISTERED_BY_CODE,
             query = JpaConst.Q_EMP_COUNT_REGISTERED_BY_CODE_DEF),
@@ -40,22 +40,23 @@ import lombok.Setter;
 @Setter //全てのクラスフィールドについてsetterを自動生成する(Lombok)
 @NoArgsConstructor //引数なしコンストラクタを自動生成する(Lombok)
 @AllArgsConstructor //全てのクラスフィールドを引数にもつ引数ありコンストラクタを自動生成する(Lombok)
+@Entity
 public class Employee {
-	
+
     /**
      * id
      */
-	@Id
-	@Column(name = JpaConst.EMP_COL_ID)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
-	
+    @Id
+    @Column(name = JpaConst.EMP_COL_ID)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
     /**
      * 社員番号
      */
-	@Column(name = JpaConst.EMP_COL_CODE, nullable = false, unique = true)
-	private String code;
-	
+    @Column(name = JpaConst.EMP_COL_CODE, nullable = false, unique = true)
+    private String code;
+
     /**
      * 氏名
      */
@@ -91,4 +92,5 @@ public class Employee {
      */
     @Column(name = JpaConst.EMP_COL_DELETE_FLAG, nullable = false)
     private Integer deleteFlag;
+
 }
